@@ -1,4 +1,4 @@
-use std::error::Error;
+use anyhow::Result;
 use std::path::Path;
 use std::process::Command;
 
@@ -35,7 +35,7 @@ pub fn ln<'a>(
     destination: Option<impl AsRef<Path>>,
     opts: Option<&LnOptions<'a>>,
     workdir: Option<&str>,
-) -> Result<i32, Box<dyn Error>> {
+) -> Result<i32> {
     let mut cmd = Command::new("/usr/bin/env");
     cmd.arg("ln");
 
@@ -120,7 +120,7 @@ pub fn ln<'a>(
 }
 
 /// Simple make symlink for file
-pub fn force_symlink(src: impl AsRef<Path>, dst: impl AsRef<Path>) -> Result<i32, Box<dyn Error>> {
+pub fn force_symlink(src: impl AsRef<Path>, dst: impl AsRef<Path>) -> Result<i32> {
     let opts = LnOptions {
         force: true,
         symbolic: true,
@@ -130,7 +130,7 @@ pub fn force_symlink(src: impl AsRef<Path>, dst: impl AsRef<Path>) -> Result<i32
 }
 
 /// Call the unlink function to remove the specified file
-pub fn unlink(file: impl AsRef<Path>) -> Result<i32, Box<dyn Error>> {
+pub fn unlink(file: impl AsRef<Path>) -> Result<i32> {
     let status = Command::new("/usr/bin/env")
         .arg("unlink")
         .arg(&file.as_ref())
