@@ -1,6 +1,6 @@
 [package]
 name = "gnu-ln"
-version = "0.1.0"
+version = "0.2.0"
 description = "Using GNU's ln and unlink for manage links"
 authors = ["Захаров Константин Иванович <zaharov@prosoftsystems.ru>"]
 license = "MIT"
